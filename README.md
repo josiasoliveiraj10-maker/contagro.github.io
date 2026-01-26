@@ -1,2 +1,929 @@
 # -josiasoliveira.github.io-
  Site de Consultoria em Excel 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josias Oliveira - Consultoria em Excel, Power BI e Automação</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3c8b;
+            --secondary: #2e5bd3;
+            --accent: #10b981;
+            --accent-dark: #0da271;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-blue: #e0f2fe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            opacity: 0.9;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-left: 15px;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 35px 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            background-color: #dbeafe;
+            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .service-card p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background-color: #e0f2fe;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: #f1f5f9;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .experience-highlight {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .experience-highlight h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .experience-highlight h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            background-color: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-category {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-list i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-button i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 25px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #475569;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .hero-bg {
+                width: 50%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.7rem;
+            }
+            
+            .hero-bg {
+                width: 60%;
+                opacity: 0.8;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: transform 0.3s, opacity 0.3s;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .hero-bg {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-button, .secondary-button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+            
+            .secondary-button {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-card, .skill-category {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Josias Oliveira</span>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Experiência</a></li>
+                    <li><a href="#skills">Habilidades</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Consultoria em <span class="highlight">Excel, Power BI</span> e Automação de Processos</h1>
+                <p>Transformo dados em insights estratégicos com soluções personalizadas em Excel avançado, Power BI e Python. Experiência sólida em <strong>contabilidade, análise financeira e gestão fundiária</strong> aplicada à automação de processos empresariais.</p>
+                <div>
+                    <a href="#contact" class="cta-button">Solicitar Consultoria</a>
+                    <a href="#services" class="cta-button secondary-button">Ver Serviços</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Serviços Especializados</h2>
+                <p>Soluções personalizadas que combinam expertise técnica com experiência prática em gestão empresarial</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3>Planilhas Avançadas em Excel</h3>
+                    <p>Desenvolvimento de planilhas complexas com dashboards interativos, macros VBA, fórmulas avançadas e automação de relatórios para análise financeira, controle de estoque e gestão empresarial.</p>
+                    <div class="service-tags">
+                        <span class="tag">Excel Avançado</span>
+                        <span class="tag">Macros VBA</span>
+                        <span class="tag">Dashboards</span>
+                        <span class="tag">Automação</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Dashboards em Power BI</h3>
+                    <p>Criação de painéis visuais interativos para monitoramento de KPIs, análise preditiva e business intelligence. Integração com múltiplas fontes de dados para tomada de decisão estratégica.</p>
+                    <div class="service-tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Business Intelligence</span>
+                        <span class="tag">Visualização de Dados</span>
+                        <span class="tag">KPIs</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automação com Python</h3>
+                    <p>Desenvolvimento de scripts e aplicações em Python para automação de processos repetitivos, web scraping, análise de dados em larga escala e integração entre sistemas.</p>
+                    <div class="service-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Automação</span>
+                        <span class="tag">Web Scraping</span>
+                        <span class="tag">Análise de Dados</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Consultoria em Processos</h3>
+                    <p>Otimização de processos empresariais com foco em eficiência operacional. Análise de fluxos de trabalho, implementação de controles internos e desenvolvimento de sistemas de gestão.</p>
+                    <div class="service-tags">
+                        <span class="tag">Otimização de Processos</span>
+                        <span class="tag">Controles Internos</span>
+                        <span class="tag">Gestão Empresarial</span>
+                        <span class="tag">BPO</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Soluções Contábeis e Fiscais</h3>
+                    <p>Desenvolvimento de sistemas para conciliação bancária, controle de contas a pagar/receber, cálculo de impostos e gestão fiscal com base na experiência em contabilidade e setor fundiário.</p>
+                    <div class="service-tags">
+                        <span class="tag">Conciliação Bancária</span>
+                        <span class="tag">Contabilidade</span>
+                        <span class="tag">Tributação</span>
+                        <span class="tag">Controles Fiscais</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Soluções para Agronegócio</h3>
+                    <p>Sistemas especializados para gestão fundiária, controle de produção agrícola, custeios, financiamentos rurais e acompanhamento de obrigações legais (ITR, CAR, CCIR).</p>
+                    <div class="service-tags">
+                        <span class="tag">Agrotis</span>
+                        <span class="tag">Gestão Fundiária</span>
+                        <span class="tag">ITR/CAR</span>
+                        <span class="tag">Agronegócio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experiência Profissional</h2>
+                <p>Mais de 5 anos de experiência combinando conhecimento técnico com prática empresarial</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Josias Oliveira</h2>
+                    <p><strong>Consultor em Excel, Power BI e Automação</strong> com formação em Ciências Contábeis e experiência multissetorial que inclui:</p>
+                    
+                    <div class="experience-highlight">
+                        <h3><i class="fas fa-building"></i> Setor Fundiário - Escritório Ruschel Sander</h3>
+                        <p>Responsável pela regularização de imóveis rurais (ITR, CAR, CCIR), gestão documental, processos tributários e desenvolvimento de sistemas de automação em Excel para otimização de processos.</p>
+                    </div>
+                    
+                    <div class="experience-highlight">
+                        <h3><i class="fas fa-chart-line"></i> Analista Administrativo - Dalba Engenharia</h3>
+                        <p>Gestão de documentos, análise de dados, preparação de relatórios, orçamentos e coordenação de projetos administrativos com foco em otimização de processos.</p>
+                    </div>
+                    
+                    <div class="experience-highlight">
+                        <h3><i class="fas fa-hand-holding-usd"></i> Assistente Financeiro - Grupo Leh's</h3>
+                        <p>Contas a pagar/receber, controle de fluxo de caixa, conciliação bancária, contratos de compra e venda agrícola e gestão de arrendamentos.</p>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email Principal:</strong><br>
+                                <a href="mailto:josiasoliveiraj10@gmail.com" style="color: var(--primary);">josiasoliveiraj10@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <strong>WhatsApp:</strong><br>
+                                <a href="https://wa.me/5542999594690" style="color: var(--primary);">(42) 9 9959-4690</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Localização:</strong><br>
+                                Guarapuava - PR | Atendimento Remoto Nacional
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="background-color: #dbeafe; height: 100%; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 10rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Competências e Especialidades</h2>
+                <p>Habilidades técnicas e conhecimentos adquiridos ao longo da carreira profissional</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-desktop"></i> Tecnologias & Sistemas</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Excel Avançado & VBA</li>
+                        <li><i class="fas fa-check"></i> Power BI & Dashboards</li>
+                        <li><i class="fas fa-check"></i> Python para Automação</li>
+                        <li><i class="fas fa-check"></i> SAP Business One</li>
+                        <li><i class="fas fa-check"></i> Agrotis & Gerente Rural</li>
+                        <li><i class="fas fa-check"></i> Microsoft Office Suite</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-calculator"></i> Contábil & Fiscal</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Conciliação Bancária</li>
+                        <li><i class="fas fa-check"></i> Contas a Pagar/Receber</li>
+                        <li><i class="fas fa-check"></i> Tributação & ICMS</li>
+                        <li><i class="fas fa-check"></i> Contabilidade Geral</li>
+                        <li><i class="fas fa-check"></i> ITR, CAR e CCIR</li>
+                        <li><i class="fas fa-check"></i> Controles Fiscais</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-pie"></i> Análise & Gestão</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Análise de Dados</li>
+                        <li><i class="fas fa-check"></i> Auditoria Interna</li>
+                        <li><i class="fas fa-check"></i> Gestão de Projetos</li>
+                        <li><i class="fas fa-check"></i> Controles Internos</li>
+                        <li><i class="fas fa-check"></i> Fluxo de Caixa</li>
+                        <li><i class="fas fa-check"></i> BPO (Terceirização)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-user-tie"></i> Habilidades Pessoais</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Resolução de Problemas</li>
+                        <li><i class="fas fa-check"></i> Organização e Planejamento</li>
+                        <li><i class="fas fa-check"></i> Comunicação Eficaz</li>
+                        <li><i class="fas fa-check"></i> Trabalho em Equipe</li>
+                        <li><i class="fas fa-check"></i> Atenção a Detalhes</li>
+                        <li><i class="fas fa-check"></i> Adaptabilidade</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Precisa otimizar seus processos com automação?</h2>
+            <p>Combinando expertise técnica em Excel, Power BI e Python com experiência prática em contabilidade, finanças e gestão fundiária, posso desenvolver a solução ideal para sua empresa.</p>
+            <a href="https://wa.me/5542999594690" class="whatsapp-button">
+                <i class="fab fa-whatsapp"></i> Falar diretamente no WhatsApp
+            </a>
+            <p style="margin-top: 25px; font-size: 1rem;">Ou envie um email para: <strong>josiasoliveiraj10@gmail.com</strong> | <strong>josiasolv@outlook.com</strong></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Josias Oliveira</h3>
+                    <p>Consultor especializado em Excel avançado, Power BI, Python e automação de processos empresariais. Experiência sólida em contabilidade, análise financeira e gestão fundiária aplicada ao desenvolvimento de soluções técnicas.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/5542999594690" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:josiasoliveiraj10@gmail.com" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#contact" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> josiasoliveiraj10@gmail.com</p>
+                    <p><i class="fas fa-envelope"></i> josiasolv@outlook.com</p>
+                    <p><i class="fab fa-whatsapp"></i> (42) 9 9959-4690</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Guarapuava - PR</p>
+                    <p><i class="fas fa-globe"></i> Atendimento remoto para todo o Brasil</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Áreas de Atuação</h3>
+                    <p>Planilhas Avançadas em Excel</p>
+                    <p>Dashboards em Power BI</p>
+                    <p>Automação com Python</p>
+                    <p>Consultoria em Processos</p>
+                    <p>Soluções Contábeis/Fiscais</p>
+                    <p>Sistemas para Agronegócio</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Josias Oliveira - Consultoria em Excel, Power BI e Automação. Todos os direitos reservados.</p>
+                <p style="margin-top: 8px; font-size: 0.8rem;">Formado em Ciências Contábeis | Experiência em Contabilidade, Finanças e Gestão Fundiária</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
